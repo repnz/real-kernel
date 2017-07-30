@@ -1,5 +1,5 @@
 #include "bios/video.h"
-#include "strutils.h"
+#include "str_tools.h"
 
 namespace bios {
 	namespace video {
@@ -224,7 +224,7 @@ namespace bios {
 		}
 
 		void write_string(const char* str, cell location, write_mode mode, byte pageNumber, bios_color color) {
-			word len = string::length(str);
+			word len = str_tools::length(str);
 			byte color_byte = color.color_byte();
 
 			__asm {

@@ -6,6 +6,21 @@ using namespace bios;
 
 namespace os {
 	namespace console {
+		void clear() {
+
+			__asm {
+				pusha
+				mov ax, 0x0700; function 07, AL = 0 means scroll whole window
+				mov bh, 0x07; character attribute = white on black
+				mov cx, 0x0000; row = 0, col = 0
+				mov dx, 0x184f; row = 24 (0x18), col = 79 (0x4f)
+				int 0x10; call BIOS video interrupt
+				popa
+			}
+
+			video::set_cursor_position(0, 0, 0);
+		}
+
 		void print_char(char c) {
 			video::teletype_write(c);
 		}
@@ -57,6 +72,34 @@ namespace os {
 			for (word i = 0; i < len; ++i) {
 				print_hex(b[i], 1);
 				video::teletype_write(' ');
+			}
+		}
+
+		word read_line(char* buffer, word len) {
+
+			len--;
+			word i = 0;
+
+			while (true) {				
+				keyboard::press_info press = keyboard::read_press();
+
+				switch (press.scanCode) {
+				case keyboard::scan_codes::Enter:
+					buffer[i] = 0;
+					return i;
+				case keyboard::scan_codes::BackSpace:
+					if (i > 0) {
+						buffer[i] = 0;
+						--i;
+					}
+
+				default:
+					if (i < len && press.asciiChar != 0) {
+						print_char(press.asciiChar);
+						buffer[i] = press.asciiChar;
+						++i;
+					}
+				}
 			}
 		}
 	}

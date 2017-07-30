@@ -5,6 +5,8 @@ namespace os
 {
 	namespace console 
 	{
+		void clear();
+
 		void print_char(char c);
 
 		void print_line();
@@ -17,6 +19,7 @@ namespace os
 
 		void print_mem(byte* b, word len);
 
+		word read_line(char* buffer, word len);
 		
 	}
 }

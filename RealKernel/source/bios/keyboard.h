@@ -1,11 +1,12 @@
 #pragma once
 #include "types.h"
+#include "keyboard_codes.h"
 
 namespace bios {
 	namespace keyboard {
 
 		struct press_info {
-			byte scanCode;
+			scan_code scanCode;
 			char asciiChar;
 		};
 
@@ -13,6 +14,6 @@ namespace bios {
 
 		char read_press_char();
 
-		byte read_press_scan_code();
+		scan_code read_press_scan_code();
 	}
 }

@@ -22,14 +22,18 @@
     <ClCompile Include="source\bios\video.cpp" />
     <ClCompile Include="source\kernel_main.cpp" />
     <ClCompile Include="source\os\console.cpp" />
+    <ClCompile Include="source\str_tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\bios\keyboard_codes.h" />
+    <ClInclude Include="source\system\apm.h" />
+    <ClInclude Include="source\system\interrupt_vector_table.h" />
     <ClInclude Include="source\os\console.h" />
     <ClInclude Include="source\bios\disk.h" />
     <ClInclude Include="source\bios\keyboard.h" />
     <ClInclude Include="source\bios\video.h" />
-    <ClInclude Include="source\cpu\interrupts.h" />
-    <ClInclude Include="source\strutils.h" />
+    <ClInclude Include="source\system\interrupts.h" />
+    <ClInclude Include="source\str_tools.h" />
     <ClInclude Include="source\types.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
