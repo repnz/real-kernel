@@ -21,20 +21,30 @@
     <ClCompile Include="source\bios\keyboard.cpp" />
     <ClCompile Include="source\bios\video.cpp" />
     <ClCompile Include="source\kernel_main.cpp" />
-    <ClCompile Include="source\os\console.cpp" />
-    <ClCompile Include="source\str_tools.cpp" />
+    <ClCompile Include="source\system\apm.cpp" />
+    <ClCompile Include="source\ui\commands\echo_command.cpp" />
+    <ClCompile Include="source\ui\commands\exit_command.cpp" />
+    <ClCompile Include="source\ui\commands\help_command.cpp" />
+    <ClCompile Include="source\ui\console.cpp" />
+    <ClCompile Include="source\ui\shell.cpp" />
+    <ClCompile Include="source\lib\str_tools.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\bios\keyboard_codes.h" />
+    <ClInclude Include="source\ui\commands\echo_command.h" />
+    <ClInclude Include="source\ui\commands\exit_command.h" />
+    <ClInclude Include="source\ui\commands\help_command.h" />
+    <ClInclude Include="source\ui\shell.h" />
+    <ClInclude Include="source\ui\shell_command.h" />
     <ClInclude Include="source\system\apm.h" />
     <ClInclude Include="source\system\interrupt_vector_table.h" />
-    <ClInclude Include="source\os\console.h" />
+    <ClInclude Include="source\ui\console.h" />
     <ClInclude Include="source\bios\disk.h" />
     <ClInclude Include="source\bios\keyboard.h" />
     <ClInclude Include="source\bios\video.h" />
     <ClInclude Include="source\system\interrupts.h" />
-    <ClInclude Include="source\str_tools.h" />
-    <ClInclude Include="source\types.h" />
+    <ClInclude Include="source\lib\str_tools.h" />
+    <ClInclude Include="source\stdint.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E11A7AA-56AF-4170-A618-70064629D2E6}</ProjectGuid>
@@ -66,13 +76,13 @@
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\source;</IncludePath>
+    <IncludePath>$(ProjectDir)\source;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\source;</IncludePath>
+    <IncludePath>$(ProjectDir)\source;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

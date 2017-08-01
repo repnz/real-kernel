@@ -1,5 +1,4 @@
-#include "bios/video.h"
-#include "str_tools.h"
+#include <bios/video.h>
 
 namespace bios {
 	namespace video {
@@ -58,26 +57,42 @@ namespace bios {
 			}
 		}
 
-		void set_cursor_position(byte pageNumber, byte row, byte column) {
+		void set_cursor_position(byte pageNumber, cell cell) {
 			__asm {
-					mov ah, 02h
-					mov bh, pageNumber,
-					mov dh, row
-					mov dl, column
-					int 10h
+				mov ah, 02h
+				mov bh, pageNumber,
+				mov dh, byte ptr [cell] // row
+				mov dl, byte ptr [cell+1] // column
+				int 10h
 			}
 		}
 
-		void get_cursor_info(byte pageNumber, cursor_info* info) {
+		cell get_cursor_location() {
+			byte row, column;
 
+			__asm {
+				mov ah, 03h
+				mov bh, 0
+				int 10h
+				mov row, dh
+				mov column, dl
+			}
+
+			return cell(row, column);
+		}
+
+		void get_cursor_info(byte pageNumber, cursor_info* info) {
 			__asm {
 					mov ah, 03h
 					mov bh, pageNumber
 					int 10h
-					mov byte ptr[info], ch
-					mov byte ptr[info + 1], cl
-					mov byte ptr[info + 2], dh
-					mov byte ptr[info + 3], dl
+					push bx
+					mov bx, info
+					mov byte ptr [bx], ch // start_scan_line
+					mov byte ptr [bx + 1], cl // end_scan_line
+					mov byte ptr [bx + 2], dh // row
+					mov byte ptr [bx + 3], dl // column
+					pop bx
 			}
 		}
 
@@ -223,8 +238,7 @@ namespace bios {
 			}
 		}
 
-		void write_string(const char* str, cell location, write_mode mode, byte pageNumber, bios_color color) {
-			word len = str_tools::length(str);
+		void write_string(const char* str, cell location, write_mode mode, byte pageNumber, bios_color color, word len) {
 			byte color_byte = color.color_byte();
 
 			__asm {

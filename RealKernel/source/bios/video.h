@@ -1,5 +1,5 @@
 #pragma once
-#include "types.h"
+#include <stdint.h>
 
  
 namespace bios {
@@ -111,7 +111,7 @@ namespace bios {
 
 		void set_cursor_size(byte width, byte height);
 
-		void set_cursor_position(byte pageNumber, byte row, byte column);
+		void set_cursor_position(byte pageNumber, cell cell);
 
 		void get_cursor_info(byte pageNumber, cursor_info* info);
 

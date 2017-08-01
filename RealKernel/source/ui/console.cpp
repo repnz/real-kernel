@@ -1,11 +1,12 @@
-#include "os\console.h"
-#include "bios\video.h"
-#include "bios\keyboard.h"
+#include <ui\console.h>
+#include <bios\video.h>
+#include <bios\keyboard.h>
 
 using namespace bios;
 
-namespace os {
+namespace ui {
 	namespace console {
+
 		void clear() {
 
 			__asm {
@@ -18,7 +19,7 @@ namespace os {
 				popa
 			}
 
-			video::set_cursor_position(0, 0, 0);
+			video::set_cursor_position(0, video::cell(0, 0));
 		}
 
 		void print_char(char c) {
@@ -77,8 +78,13 @@ namespace os {
 
 		word read_line(char* buffer, word len) {
 
+			video::cursor_info inf;
+			video::get_cursor_info(0, &inf);
+			video::cell pos = inf.location;
+
 			len--;
 			word i = 0;
+			word bufferLastIndex = 0;
 
 			while (true) {				
 				keyboard::press_info press = keyboard::read_press();
@@ -89,9 +95,30 @@ namespace os {
 					return i;
 				case keyboard::scan_codes::BackSpace:
 					if (i > 0) {
+						pos.column--;
+						video::set_cursor_position(0, pos);
+						print_char(' ');
+						video::set_cursor_position(0, pos);
 						buffer[i] = 0;
 						--i;
 					}
+
+					break;
+				case keyboard::scan_codes::LeftArrow:
+					if (i > 0) {
+						pos.column--;
+						video::set_cursor_position(0, pos);
+					}
+					
+					break;
+
+				case keyboard::scan_codes::RightArrow:
+					if (i < bufferLastIndex) {
+						pos.column++;
+						video::set_cursor_position(0, pos);
+					}
+
+				break;
 
 				default:
 					if (i < len && press.asciiChar != 0) {
@@ -99,6 +126,9 @@ namespace os {
 						buffer[i] = press.asciiChar;
 						++i;
 					}
+
+					pos.column++;
+					bufferLastIndex++;
 				}
 			}
 		}

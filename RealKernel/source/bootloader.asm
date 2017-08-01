@@ -4,7 +4,7 @@
 %define kernel_load_address 0x1000
 %define drive 0x80
 %define kernel_sector 2
-%define kernel_sectors_length 5
+%define kernel_sectors_length 6
 
 
 jmp 0000:start

@@ -1,7 +1,8 @@
 #pragma once
-#include "types.h"
+#include <bios\video.h>
+#include <stdint.h>
 
-namespace os 
+namespace ui
 {
 	namespace console 
 	{

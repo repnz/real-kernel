@@ -1,6 +1,6 @@
 #pragma once
-#include "types.h"
-#include "keyboard_codes.h"
+#include <stdint.h>
+#include <bios/keyboard_codes.h>
 
 namespace bios {
 	namespace keyboard {

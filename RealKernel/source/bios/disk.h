@@ -1,5 +1,5 @@
 #pragma once 
-#include "types.h"
+#include <stdint.h>
 
 namespace bios {
 	namespace disk {
