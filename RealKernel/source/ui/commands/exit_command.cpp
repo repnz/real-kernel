@@ -1,4 +1,4 @@
-#include <stdint.h>
+#include <std/inta.h>
 #include <ui/commands/exit_command.h>
 #include <ui/console.h>
 #include <system/apm.h>

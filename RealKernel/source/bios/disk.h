@@ -1,8 +1,9 @@
 #pragma once 
-#include <stdint.h>
+#include <std/inta.h>
 
 namespace bios {
 	namespace disk {
+        const word sector_size = 512;
 
 		typedef byte operation_code;
 

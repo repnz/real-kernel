@@ -1,6 +1,6 @@
-#include <ui\console.h>
-#include <bios\video.h>
-#include <bios\keyboard.h>
+#include <ui/console.h>
+#include <bios/video.h>
+#include <bios/keyboard.h>
 
 using namespace bios;
 
@@ -11,11 +11,11 @@ namespace ui {
 
 			__asm {
 				pusha
-				mov ax, 0x0700; function 07, AL = 0 means scroll whole window
-				mov bh, 0x07; character attribute = white on black
-				mov cx, 0x0000; row = 0, col = 0
-				mov dx, 0x184f; row = 24 (0x18), col = 79 (0x4f)
-				int 0x10; call BIOS video interrupt
+				mov ax, 0x0700 //; function 07, AL = 0 means scroll whole window
+				mov bh, 0x07 //; character attribute = white on black
+				mov cx, 0x0000 //; row = 0, col = 0
+				mov dx, 0x184f //; row = 24 (0x18), col = 79 (0x4f)
+				int 0x10 //; call BIOS video interrupt
 				popa
 			}
 

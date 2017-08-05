@@ -1,6 +1,6 @@
 #pragma once
-#include <stdint.h>
-#include <lib/str_tools.h>
+#include <std/inta.h>
+#include <std/str.h>
 #include <ui/shell.h>
 
 namespace ui {
@@ -20,7 +20,7 @@ namespace ui {
 	public:
 		shell_command(const char* name, const char* description) :
 			_name(name),
-			_nameLength(lib::str_tools::length(_name)),
+			_nameLength(std::str_tools::length(_name)),
 			_description(description) {
 		}
 

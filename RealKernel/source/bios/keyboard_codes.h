@@ -1,5 +1,5 @@
 #pragma once 
-#include <stdint.h>
+#include <std/inta.h>
 
 namespace bios {
 	namespace keyboard {

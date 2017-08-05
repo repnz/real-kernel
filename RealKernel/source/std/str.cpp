@@ -1,6 +1,6 @@
-#include <lib\str_tools.h>
+#include <std/str.h>
 
-namespace lib {
+namespace std {
 
 	namespace str_tools {
 		bool equals_length(const char* left, const char* right, word leftLen, word rightLen) {
@@ -57,5 +57,20 @@ namespace lib {
 
 			return len;
 		}
+
+
+        void copy(const char* src, char* dst) {
+            while (true) {
+                register char a = *src;
+                
+                if (a == 0) {
+                    return;
+                }
+
+                *dst = a;
+                ++dst;
+                ++src;
+            }
+        }
 	}
 }

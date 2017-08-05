@@ -1,16 +1,19 @@
 #pragma once
-#include <stdint.h>
+#include <std/inta.h>
 
  
 namespace bios {
 	namespace video {
-		struct cell {
+		
+        struct cell {
 			byte row;
 			byte column;
 
-			cell() {}
+			cell() {
+            }
 
-			cell(byte row, byte column) { this->row = row; this->column = column; }
+			cell(byte row, byte column) : row(row), column(column){
+            }
 
 
 		};

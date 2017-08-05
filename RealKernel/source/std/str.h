@@ -1,7 +1,7 @@
 #pragma once
-#include <stdint.h>
+#include <std/inta.h>
 
-namespace lib {
+namespace std {
 	namespace str_tools {
 		word length(const char* str);
 
@@ -14,6 +14,8 @@ namespace lib {
 		inline bool equals(const char* left, const char* right) {
 			return equals_until(left, right, 0);
 		}
+
+        void copy(const char* src, char* dst);
 	};
 
 }

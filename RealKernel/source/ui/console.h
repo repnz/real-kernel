@@ -1,6 +1,6 @@
 #pragma once
-#include <bios\video.h>
-#include <stdint.h>
+#include <bios/video.h>
+#include <std/inta.h>
 
 namespace ui
 {

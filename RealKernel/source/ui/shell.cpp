@@ -1,6 +1,6 @@
-#include "ui/shell.h"
-#include "ui/console.h"
-#include "lib/str_tools.h"
+#include <ui/shell.h>
+#include <ui/console.h>
+#include <std/str.h>
 
 namespace ui {
 	shell::shell() : _nextCommandIndex(0) {
@@ -27,7 +27,7 @@ namespace ui {
 			for (i = 0; i < _nextCommandIndex; ++i){
 				register shell_command* cmd = _commands[i];
 
-				if (lib::str_tools::equals_until(cmd->name(), userInput, ' ')) {
+				if (std::str_tools::equals_until(cmd->name(), userInput, ' ')) {
 					_commands[i]->run(userInput + cmd->nameLength()+1);
 					break;
 				}

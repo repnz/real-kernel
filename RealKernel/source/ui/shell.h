@@ -1,6 +1,6 @@
 #pragma once
-#include <stdint.h>
-#include <lib/str_tools.h>
+#include <std/inta.h>
+#include <std/str.h>
 #include <ui/shell_command.h>
 
 namespace ui {
