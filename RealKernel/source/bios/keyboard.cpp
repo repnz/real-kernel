@@ -1,4 +1,4 @@
-#include <bios\keyboard.h>
+#include <bios/keyboard.h>
 
 namespace bios {
 	namespace keyboard {
@@ -13,6 +13,9 @@ namespace bios {
                 "mov character, al;"
                 );
 
+            press_info i;
+            i.scanCode = scanCode;
+            i.asciiChar = character;
 			return i;
 		}
 
