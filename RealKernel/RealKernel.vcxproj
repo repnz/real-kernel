@@ -13,8 +13,12 @@
   <ItemGroup>
     <None Include="boot_file_creator.py" />
     <None Include="build.bat" />
+    <None Include="Makefile" />
     <None Include="source\bootloader.asm" />
     <None Include="source\kernel_point.asm" />
+    <None Include="LinkerScript.ld" />
+    <None Include="src\bootloader.asm" />
+    <None Include="src\kernel_point.asm" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bios\disk.cpp" />
@@ -35,6 +39,24 @@
     <ClCompile Include="source\ui\console.cpp" />
     <ClCompile Include="source\ui\shell.cpp" />
     <ClCompile Include="source\std\str.cpp" />
+    <ClCompile Include="src\bios\disk.cpp" />
+    <ClCompile Include="src\bios\keyboard.cpp" />
+    <ClCompile Include="src\bios\video.cpp" />
+    <ClCompile Include="src\file_system\directory.cpp" />
+    <ClCompile Include="src\file_system\file.cpp" />
+    <ClCompile Include="src\io\disk.cpp" />
+    <ClCompile Include="src\io\disk_cache.cpp" />
+    <ClCompile Include="src\kernel_main.cpp" />
+    <ClCompile Include="src\std\arr.cpp" />
+    <ClCompile Include="src\std\str.cpp" />
+    <ClCompile Include="src\system\apm.cpp" />
+    <ClCompile Include="src\ui\commands\dir_command.cpp" />
+    <ClCompile Include="src\ui\commands\echo_command.cpp" />
+    <ClCompile Include="src\ui\commands\exit_command.cpp" />
+    <ClCompile Include="src\ui\commands\help_command.cpp" />
+    <ClCompile Include="src\ui\commands\read_command.cpp" />
+    <ClCompile Include="src\ui\console.cpp" />
+    <ClCompile Include="src\ui\shell.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\bios\keyboard_codes.h" />
@@ -44,6 +66,7 @@
     <ClInclude Include="source\file_system\file_system.h" />
     <ClInclude Include="source\io\disk.h" />
     <ClInclude Include="source\io\disk_cache.h" />
+    <ClInclude Include="source\log\log.h" />
     <ClInclude Include="source\std\arr.h" />
     <ClInclude Include="source\std\errors.h" />
     <ClInclude Include="source\ui\commands\dir_command.h" />
@@ -60,6 +83,30 @@
     <ClInclude Include="source\bios\video.h" />
     <ClInclude Include="source\std\str.h" />
     <ClInclude Include="source\std\inta.h" />
+    <ClInclude Include="src\bios\disk.h" />
+    <ClInclude Include="src\bios\keyboard.h" />
+    <ClInclude Include="src\bios\keyboard_codes.h" />
+    <ClInclude Include="src\bios\video.h" />
+    <ClInclude Include="src\file_system\directory.h" />
+    <ClInclude Include="src\file_system\file.h" />
+    <ClInclude Include="src\file_system\file_data.h" />
+    <ClInclude Include="src\file_system\file_system.h" />
+    <ClInclude Include="src\io\disk.h" />
+    <ClInclude Include="src\io\disk_cache.h" />
+    <ClInclude Include="src\log\log.h" />
+    <ClInclude Include="src\std\arr.h" />
+    <ClInclude Include="src\std\errors.h" />
+    <ClInclude Include="src\std\inta.h" />
+    <ClInclude Include="src\std\str.h" />
+    <ClInclude Include="src\system\apm.h" />
+    <ClInclude Include="src\ui\commands\dir_command.h" />
+    <ClInclude Include="src\ui\commands\echo_command.h" />
+    <ClInclude Include="src\ui\commands\exit_command.h" />
+    <ClInclude Include="src\ui\commands\help_command.h" />
+    <ClInclude Include="src\ui\commands\read_command.h" />
+    <ClInclude Include="src\ui\console.h" />
+    <ClInclude Include="src\ui\shell.h" />
+    <ClInclude Include="src\ui\shell_command.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E11A7AA-56AF-4170-A618-70064629D2E6}</ProjectGuid>
@@ -91,13 +138,13 @@
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(ProjectDir)\source;</IncludePath>
+    <IncludePath>$(ProjectDir)\src;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(ProjectDir)\source;</IncludePath>
+    <IncludePath>$(ProjectDir)\src;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

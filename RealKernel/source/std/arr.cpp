@@ -1,4 +1,5 @@
 #include <std/arr.h>
+#include <ui/console.h>
 
 namespace std {
 

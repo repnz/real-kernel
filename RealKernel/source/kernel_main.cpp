@@ -4,10 +4,13 @@
 #include <ui/commands/help_command.h>
 #include <ui/commands/dir_command.h>
 #include <file_system/file.h>
+#include <ui/console.h>
 
 using namespace ui;
 
 extern "C" void kernel_main() {
+    console::clear();
+    console::print_string("hello");
 
 	commands::echo_command echo;
 	commands::exit_command exit;

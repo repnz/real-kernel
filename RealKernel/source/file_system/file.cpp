@@ -9,6 +9,7 @@ namespace file_system {
         file_data* data = directory::get_file_data(name);
         return file(name, data);
     }
+    
 
     void file::rename(const char* name) {
         std::str_tools::copy(name, _data->name);

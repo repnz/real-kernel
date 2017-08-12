@@ -11,7 +11,7 @@ namespace file_system {
     byte directory_start_sector = 10;
     byte directory_sectors_size = sizeof(directory);
 
-    directory* get_directory() {
+    directory* directory::get_directory() {
         if (initialized) {
             return &_directory;
         }
