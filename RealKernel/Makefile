@@ -1,9 +1,9 @@
 PROJECT_NAME := real-kernel
 CC        := g++
 LINKER    := ld
-SRCDIR    := src
-HEADERDIR := src
-BUILDDIR  := build
+SRCDIR    := source
+HEADERDIR := source
+BUILDDIR  := obj
 BINDIR    := bin
 TARGET    := $(BINDIR)/$(PROJECT_NAME)
 SOURCES   := $(shell find $(SRCDIR) -type f -name *.c*)
