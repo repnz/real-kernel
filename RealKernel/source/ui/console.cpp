@@ -8,7 +8,7 @@ namespace ui {
 	namespace console {
 
 		void clear() {
-
+            /*
 			__asm {
 				pusha
 				mov ax, 0x0700 //; function 07, AL = 0 means scroll whole window
@@ -20,6 +20,8 @@ namespace ui {
 			}
 
 			video::set_cursor_position(0, video::cell(0, 0));
+
+            */
 		}
 
 		void print_char(char c) {

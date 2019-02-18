@@ -13,10 +13,10 @@
   <ItemGroup>
     <None Include="boot_file_creator.py" />
     <None Include="build.bat" />
+    <None Include="linker.ld" />
     <None Include="Makefile" />
     <None Include="source\bootloader.asm" />
     <None Include="source\kernel_point.asm" />
-    <None Include="LinkerScript.ld" />
     <None Include="src\bootloader.asm" />
     <None Include="src\kernel_point.asm" />
   </ItemGroup>
@@ -138,13 +138,13 @@
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(ProjectDir)\src;</IncludePath>
+    <IncludePath>$(ProjectDir)\source;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>build.bat</NMakeBuildCommandLine>
     <NMakeOutput>BootLoader.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>$(ProjectDir)\src;</IncludePath>
+    <IncludePath>$(ProjectDir)\source;</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>

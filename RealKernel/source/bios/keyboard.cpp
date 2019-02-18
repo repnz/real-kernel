@@ -3,8 +3,8 @@
 namespace bios {
 	namespace keyboard {
 		press_info read_press() {
-			byte scanCode;
-			char character;
+            byte scanCode = 0;
+            char character = 0;
 			
             asm(
                 "mov ah, 0;"
@@ -20,7 +20,7 @@ namespace bios {
 		}
 
 		char read_press_char() {
-			char res;
+            char res = 0;
 
             asm(
                 "mov ah, 0;"
@@ -32,7 +32,7 @@ namespace bios {
 		}
 
 		byte read_press_scan_code() {
-			byte res;
+            byte res = 0;
 
             asm(
                 "mov ah, 0;"

@@ -86,7 +86,7 @@ namespace bios {
 		void get_cursor_info(byte pageNumber, cursor_info* info) {
             asm(
                 "push bx;"
-                "mov ah, 0x3"
+                "mov ah, 0x3;"
                 "mov bh, pageNumber;"
                 "int 0x10;"
                 "mov bx, info;"
@@ -101,8 +101,8 @@ namespace bios {
 		void set_active_page(byte pageNumber) {
             asm(
                 "mov ah, 0x5;"
-                "mov al, pageNumber"
-                "int 0x10"
+                "mov al, pageNumber;"
+                "int 0x10;"
                 );
 		}
 

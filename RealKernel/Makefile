@@ -1,16 +1,19 @@
 PROJECT_NAME := real-kernel
 CC        := g++
-LINKER    := ld
+ASM       := nasm -f elf 
+LINKER    := ld -T linker.ld
 SRCDIR    := source
 HEADERDIR := source
 BUILDDIR  := obj
 BINDIR    := bin
 TARGET    := $(BINDIR)/$(PROJECT_NAME)
 SOURCES   := $(shell find $(SRCDIR) -type f -name *.c*)
+ASMS      := $(shell find $(SRCDIR) -type f -name *.asm)
+ASM_OBJS  := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .asmo,$(basename $(ASMS))))
 HEDEARS   := $(shell find $(HEADERDIR) -type f -name *.h*)
 OBJECTS   := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .o,$(basename $(SOURCES))))
 DEPS      := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(addsuffix .d,$(basename $(SOURCES))))
-CFLAGS    := -m16 -fno-stack-protector -std=c++11 -masm=intel
+CFLAGS    := -m32 -std=c++11 -masm=intel
 LIB       := 
 INC       := -I $(HEADERDIR)
 
@@ -32,9 +35,9 @@ all: $(TARGET)
 clean:
 	rm $(BUILDDIR) $(BINDIR) -rf
 
-$(TARGET): $(BINDIR) $(BUILDDIR) $(OBJECTS)
+$(TARGET): $(BINDIR) $(BUILDDIR) $(ASM_OBJS) $(OBJECTS)
 	$(call print_green,"Linking object files...")
-	@$(LINKER) $(OBJECTS) -o $(TARGET) $(LIB)
+	@$(LINKER) $(ASM_OBJS) $(OBJECTS) -o $(TARGET) $(LIB)
 	$(call print_green,"$(TARGET) has been created!")
 
 $(BUILDDIR) :
@@ -42,9 +45,6 @@ $(BUILDDIR) :
 
 $(BINDIR):
 	mkdir $(BINDIR)
-
-bootloader: source\bootloader.asm 	
-	nasm -f obj $@ $(@:.asm=.o)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c*
 	@mkdir -p $(dir $@) 
@@ -54,6 +54,10 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.c*
 	@sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 	-e '/^$$/ d' -e 's/$$/ :/' < $(@:.o=.td) >> $(@:.o=.d); 
 	@rm -f $(@:.o=.td)
+	
+$(BUILDDIR)/%.asmo: $(SRCDIR)/%.asm
+	@mkdir -p $(dir $@) 
+	$(ASM) $< -o $@
 
 
 -include $(DEPS)

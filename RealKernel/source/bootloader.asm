@@ -1,11 +1,13 @@
 [bits 16]
-[org 0x7c00]
+global bootload
 
 %define kernel_load_address 0x8000
 %define drive 0x80
 %define kernel_sector 2
 %define kernel_sectors_length 12
 
+
+bootload:
 
 jmp 0000:start
 

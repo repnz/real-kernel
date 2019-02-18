@@ -4,9 +4,11 @@ namespace bios {
 	namespace disk {
 		void reset_disk_drive(byte drive, byte head, byte sector, word cylinder) {
             asm(
-                "mov dl, _drive;"
+                "mov dl, %[drive];"
                 "mov ah, 0;"
                 "int 0x13;"
+                /* output */  : // empty
+                /* input */ : [drive] "r" (drive)
             );
 		}
 
@@ -14,10 +16,12 @@ namespace bios {
 			operation_code status;
 
             asm(
-                "mov dl, _drive;"
+                "mov dl, %[drive];"
                 "mov ah, 1;"
                 "int 0x13;"
-                "mov _status, ah;"
+                "mov %[status], ah;"
+                /* output */  : [status] "=r" (status) // empty
+                /* input */ : [drive] "r" (drive)
                 );
 
 			return status;
@@ -33,17 +37,19 @@ namespace bios {
                 "push bx;"
                 "mov ax, 0;"
                 "mov es, ax;"
-                "mov al, _sectorsToRead;"
-                "mov cx, _diskPlaceByte;"
-                "mov dh, _head;"
-                "mov dl, _drive;"
-                "mov bx, _buffer;"
+                "mov al, %[sectorsToRead];"
+                "mov cx, %[diskPlaceByte];"
+                "mov dh, %[head];"
+                "mov dl, %[drive];"
+                "mov bx, %[buffer];"
                 "mov ah, 2;"
                 "int 0x13;"
-                "mov _status, ah;"
-                "mov bx, _actualReadCount;"
+                "mov %[status], ah;"
+                "mov bx, %[actualReadCount];"
                 "mov byte ptr [bx], al;"
                 "pop bx;"
+                /* output */  : [status] "=r" (status) // empty
+                /* input */ : [drive] "r" (drive)
                 );
                 
 			return status;
